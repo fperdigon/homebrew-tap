@@ -16,9 +16,12 @@ cask "macpocketknife" do
 
   app "MacPocketKnife.app"
 
-  postflight_steps do
-    # The app is ad-hoc signed and not notarized, so remove quarantine to prevent Gatekeeper blocking it.
-    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/MacPocketKnife.app"]
+  # MacPocketKnife is ad-hoc signed and not notarized, so clear the download flag or Gatekeeper refuses it.
+  # Legacy postflight on purpose: it works on older Homebrew too; postflight_steps needs the newest.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args:         ["-dr", "com.apple.quarantine", "#{appdir}/MacPocketKnife.app"],
+                   must_succeed: false
   end
 
   uninstall quit: "io.github.fperdigon.macpocketknife"

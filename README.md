@@ -1,43 +1,27 @@
 # fperdigon Homebrew Tap
 
-This tap distributes [MacPocketKnife](https://github.com/fperdigon/macpocketknife), a personal pocket multi-tool for the Mac menu bar, starting with a battery guard.
+This tap distributes apps from the `fperdigon` account.
 
-## Install
+## Casks
 
-```bash
-brew install --cask fperdigon/tap/macpocketknife
-```
+| App | Install |
+| --- | --- |
+| [MacPocketKnife](https://github.com/fperdigon/macpocketknife) | `brew install --cask fperdigon/tap/macpocketknife` |
+| [RMount](https://github.com/fperdigon/rmount) | `brew install --cask fperdigon/tap/rmount` |
+| RMount Lite | `brew install --cask fperdigon/tap/rmount-lite` |
 
-Or add the tap first:
+## Migrating from `fperdigon/rmount`
 
-```bash
-brew tap fperdigon/tap
-```
-
-```bash
-brew install --cask macpocketknife
-```
-
-## Upgrade
+If you installed RMount from the old tap `fperdigon/rmount`, Homebrew migrates it automatically on `brew update`. Otherwise, run:
 
 ```bash
-brew upgrade --cask macpocketknife
+brew untap fperdigon/rmount && brew install --cask fperdigon/tap/rmount
 ```
 
-The app's own updater also works, but then Homebrew's recorded version goes stale; prefer `brew upgrade` for Homebrew installs and turn off automatic update checks in the app's Settings if you want a single updater.
+## Updates
 
-## Uninstall
-
-```bash
-brew uninstall --cask macpocketknife
-```
-
-To also remove the app's saved preferences, support files, and cache:
-
-```bash
-brew uninstall --cask --zap macpocketknife
-```
+MacPocketKnife is updated by the daily workflow in this tap. The RMount casks are pushed by RMount's release workflow.
 
 ## Security
 
-MacPocketKnife is ad-hoc signed and is not notarized. After installation, the cask removes the quarantine flag from `MacPocketKnife.app` so Gatekeeper does not block it. Homebrew verifies the download against the SHA-256 checksum in the cask.
+All three apps are ad-hoc signed and are not notarized. Their casks remove the quarantine flag after installation so Gatekeeper does not block them. Homebrew verifies each download against the SHA-256 checksum in its cask.

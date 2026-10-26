@@ -12,9 +12,9 @@ jobs:
       - name: Update Homebrew
         run: brew update
       - name: Check cask style
-        run: brew style Casks/macpocketknife.rb
+        run: brew style --except-cops Cask/InstallSteps Casks/
       - name: Check Ruby syntax
-        run: ruby -c Casks/macpocketknife.rb
-      - name: Audit cask
+        run: for cask in Casks/*.rb; do ruby -c "$cask"; done
+      - name: Audit casks
         continue-on-error: true
-        run: brew audit --cask --online Casks/macpocketknife.rb
+        run: for cask in Casks/*.rb; do brew audit --cask --online "$cask"; done
