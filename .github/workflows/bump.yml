@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "17 8 * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [macpocketknife-release]
 
 permissions:
   contents: write

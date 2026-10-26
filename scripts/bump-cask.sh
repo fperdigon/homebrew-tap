@@ -30,7 +30,20 @@ api_digest="$(printf '%s' "$release_json" | ruby -rjson -e 'j=JSON.parse(STDIN.r
 
 tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
-curl --fail --location --silent --show-error "$asset_url" --output "$tmpdir/$asset_name"
+downloaded=0
+for attempt in {1..5}; do
+  if curl --fail --location --silent --show-error "$asset_url" --output "$tmpdir/$asset_name"; then
+    downloaded=1
+    break
+  fi
+  if [[ "$attempt" -lt 5 ]]; then
+    sleep 10
+  fi
+done
+if [[ "$downloaded" -ne 1 ]]; then
+  echo "Failed to download $asset_name after 5 attempts" >&2
+  exit 1
+fi
 sha="$(shasum -a 256 "$tmpdir/$asset_name" | awk '{print $1}')"
 if [[ -n "$api_digest" ]]; then
   expected="${api_digest#sha256:}"

@@ -20,7 +20,7 @@ brew untap fperdigon/rmount && brew install --cask fperdigon/tap/rmount
 
 ## Updates
 
-MacPocketKnife is updated by the daily workflow in this tap. The RMount casks are pushed by RMount's release workflow.
+The MacPocketKnife cask updates right after each release, with the daily run as a fallback; the RMount casks are updated by RMount's release workflow.
 
 ## Security
 
