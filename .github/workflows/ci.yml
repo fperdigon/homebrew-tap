@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  cask:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update Homebrew
+        run: brew update
+      - name: Check cask style
+        run: brew style Casks/macpocketknife.rb
+      - name: Check Ruby syntax
+        run: ruby -c Casks/macpocketknife.rb
+      - name: Audit cask
+        continue-on-error: true
+        run: brew audit --cask --online Casks/macpocketknife.rb

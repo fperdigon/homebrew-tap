@@ -1,0 +1,31 @@
+name: Bump cask
+
+on:
+  schedule:
+    - cron: "17 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Update cask
+        run: ./scripts/bump-cask.sh
+      - name: Commit and push changes
+        run: |
+          if [[ -z "$(git status --porcelain -- Casks/macpocketknife.rb)" ]]; then
+            echo "Cask is already current"
+            exit 0
+          fi
+          version="$(sed -n 's/^  version "\([^"]*\)"$/\1/p' Casks/macpocketknife.rb)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Casks/macpocketknife.rb
+          git commit -m "macpocketknife $version"
+          git push origin HEAD:main
