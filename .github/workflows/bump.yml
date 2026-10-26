@@ -16,6 +16,8 @@ jobs:
         with:
           ref: main
       - name: Update cask
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: ./scripts/bump-cask.sh
       - name: Commit and push changes
         run: |
