@@ -1,6 +1,6 @@
 cask "macpocketknife" do
-  version "0.2.2"
-  sha256 "e89bd1db6a8ee389ecd1e69703f67b8c626a154294330b160d7a8f1dd9e40fae"
+  version "0.3.0"
+  sha256 "236f39ab9813ac654e5cc7f5b04c6a70798b1b9a1742c844e4d44028fe7ec62c"
 
   url "https://github.com/fperdigon/macpocketknife/releases/download/v#{version}/MacPocketKnife-#{version}.dmg"
   name "MacPocketKnife"
