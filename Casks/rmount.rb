@@ -1,6 +1,6 @@
 cask "rmount" do
-  version "0.1.5"
-  sha256 "c85ffb438938585909060cc4a5b6de6daa7db0341bf633de3234a56072d07992"
+  version "0.2.0"
+  sha256 "b923236e6712e9490ce0a0b94d5e57420653efc5749ec33d3a2d82110fe42ec6"
 
   url "https://github.com/fperdigon/rmount/releases/download/v#{version}/rmount-#{version}.dmg"
   name "RMount"

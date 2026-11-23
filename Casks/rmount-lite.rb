@@ -1,6 +1,6 @@
 cask "rmount-lite" do
-  version "0.1.5"
-  sha256 "2ff1bd1dffda4d320bf951d014b1524a087fdfa0e10278640631ead0ee9258fa"
+  version "0.2.0"
+  sha256 "324a7896df70014a865f3b5b7dbd126c56d56ca5d2f0752297fd09d0c0b8762a"
 
   url "https://github.com/fperdigon/rmount/releases/download/v#{version}/rmount-lite-#{version}.dmg"
   name "RMount Lite"
